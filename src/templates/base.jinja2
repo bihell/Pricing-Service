@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pricing Service</title>
+    {% include 'html_dependencies.jinja2' %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <a class="navbar-brand" href="/" title="Home">Pricing</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('stores.index') }}">Stores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('alerts.index') }}">Alerts</a>
+                </li>
+            </ul>
+            {% if session['email'] %}
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users.user_alerts') }}"><span class="oi oi-warning"></span> Your Alerts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users.logout_user') }}"><span class="oi oi-account-logout"></span> Log out</a>
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users.register_user') }}"><span class="oi oi-person"></span> Sign up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users.login_user') }}"><span class="oi oi-account-login"></span> Log in</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+</nav>
+
+
+<div class="content container">
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+</body>
+</html>
