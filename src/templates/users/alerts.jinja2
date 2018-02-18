@@ -6,15 +6,16 @@
         </h2>
         {#            <small>for '{{ alert.item.name }}'</small>#}
     </div>
-    <div class="list-group">
+    <div class="list-group mb-3">
         {% for alert in alerts %}
             <a href="{{ url_for('alerts.get_alert_page',alert_id=alert._id) }}" class="list-group-item list-group-item-action">
                 <h5>Alert for {{ alert.item.name }}</h5>
                 <p>Last price found <strong>{{ alert.item.price }}</strong><br/>
-                Last checked on <strong>{{ alert.last_checked.strftime("%Y-%m-%d at %H:%M")}}</strong></p>
+                    Last checked on <strong>{{ alert.last_checked.strftime("%Y-%m-%d at %H:%M") }}</strong></p>
             </a>
         {% endfor %}
     </div>
+    <a class="btn btn-success" href="{{ url_for('alerts.create_alert') }}"><span class="oi oi-plus"></span> Create new</a>
     {#    <p>Last price found <strong>£{{ alert.item.price }}</strong></p>#}
     {#    <p>Last checked on <strong>{{ alert.last_checked.strftime("%d-%m-%Y %H:%M") }}</strong></p>#}
     {#    <div class="panel panel-default">#}
