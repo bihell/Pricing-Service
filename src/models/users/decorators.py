@@ -20,7 +20,7 @@ def requiers_admin_permissions(f):
         if 'email' not in session.keys() or session['email'] is None:
             flash(u'You need to be signed in for this page.')
             return redirect(url_for('users.login_user', next=request.path))
-        if session['email'] not in app.config.ADMINS:
+        if session['email'] not in app.config['ADMINS']:
             return redirect(url_for('users.login_user', message="You need to be an admin to access that"))
         return f(*args, **kwargs)
 
