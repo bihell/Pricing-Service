@@ -3,6 +3,7 @@ import json
 from flask import Blueprint, render_template, request, redirect, url_for
 
 from src.models.stores.store import Store
+import src.models.users.decorators as user_decorators
 
 store_blueprint = Blueprint('stores', __name__)
 
@@ -14,6 +15,7 @@ def index():
 
 
 @store_blueprint.route('/new', methods=['GET', 'POST'])
+@user_decorators.requiers_admin_permissions
 def create_store():
     if request.method == 'POST':
         name = request.form['name']
@@ -30,6 +32,7 @@ def create_store():
 
 
 @store_blueprint.route('/delete/<string:store_id>')
+@user_decorators.requiers_admin_permissions
 def delete_store(store_id):
     Store.get_by_id(store_id).delete()
     return redirect(url_for('.index'))
@@ -41,6 +44,7 @@ def store_page(store_id):
 
 
 @store_blueprint.route('/edit/<string:store_id>', methods=['GET', 'POST'])
+@user_decorators.requiers_admin_permissions
 def edit_store(store_id):
     if request.method == 'POST':
         name = request.form['name']
