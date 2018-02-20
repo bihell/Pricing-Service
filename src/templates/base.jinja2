@@ -26,7 +26,7 @@
             {% if session['email'] %}
                 <ul class="navbar-nav navbar-right">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('users.user_alerts') }}"><span class="oi oi-warning"></span> Your Alerts</a>
+                        <a class="nav-link" href="{{ url_for('users.user_alerts') }}"><span class="fas fa-exclamation-triangle"></span> Your Alerts</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('users.logout_user') }}"><span class="oi oi-account-logout"></span> Log out</a>
