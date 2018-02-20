@@ -5,13 +5,12 @@
             <small>list of stores supported</small>
         </h1>
     </div>
-    <div class="list-group">
+    <div class="list-group mb-3">
         {% for store in stores %}
-{#            <a href="{{ url_for('stores.store_page', store_id=store._id) }}" class="list-group-item">#}
-{#                <h4 class="list-group-item-heading">{{ store.name }}</h4>#}
-{#                <p class="list-group-item-text">All URLs in this store should start with#}
-{#                    <strong>{{ store.url_prefix }}</strong></p>#}
-{#            </a>#}
+            <a href="{{ url_for('stores.store_page', store_id=store._id) }}" class="list-group-item list-group-item-action">
+                <h4>{{ store.name }}</h4>
+                <p>All URLs in this store should start with<strong>{{ store.url_prefix }}</strong></p>
+            </a>
         {% endfor %}
     </div>
     {% if session['email'] in config.ADMINS %}
