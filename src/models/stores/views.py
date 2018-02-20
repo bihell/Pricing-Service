@@ -15,18 +15,18 @@ def index():
 
 @store_blueprint.route('/new', methods=['GET', 'POST'])
 def create_store():
-    # if request.method == 'POST':
-    #     name = request.form['name']
-    #     url_prefix = request.form['url_prefix']
-    #     tag_name = request.form['tag_name']
-    #     query = json.loads(request.form['query'])
-    #
-    #     Store(name, url_prefix, tag_name, query).save_to_mongo()
-    #
-    # # What happens if it's a GET request
-    # return render_template("stores/new_store.jinja2")
-    return "This is the store creation page"
+    if request.method == 'POST':
+        name = request.form['name']
+        url_prefix = request.form['url_prefix']
+        tag_name = request.form['tag_name']
+        query = json.loads(request.form['query'])
 
+        Store(name, url_prefix, tag_name, query).save_to_mongo()
+
+        return redirect(url_for('.index'))
+
+    # What happens if it's a GET request
+    return render_template("stores/new_store.jinja2")
 
 
 @store_blueprint.route('/delete/<string:store_id>')
