@@ -28,6 +28,18 @@ def create_store():
     return "This is the store creation page"
 
 
+
+@store_blueprint.route('/delete/<string:store_id>')
+def delete_store(store_id):
+    return "Delete store"
+    # Store.get_by_id(store_id).delete()
+
+
+@store_blueprint.route('/<string:store_id>')
+def store_page(store_id):
+    return render_template('stores/store.jinja2', store=Store.get_by_id(store_id))
+
+
 @store_blueprint.route('/edit/<string:store_id>', methods=['GET', 'POST'])
 def edit_store(store_id):
     if request.method == 'POST':
@@ -49,13 +61,3 @@ def edit_store(store_id):
 
     # What happens if it's a GET request
     return render_template("stores/edit_store.jinja2", store=Store.get_by_id(store_id))
-
-
-@store_blueprint.route('/delete/<string:store_id>')
-def delete_store(store_id):
-    Store.get_by_id(store_id).delete()
-
-
-@store_blueprint.route('/<string:store_id>')
-def store_page(store_id):
-    return render_template('stores/store.jinja2', store=Store.get_by_id(store_id))
