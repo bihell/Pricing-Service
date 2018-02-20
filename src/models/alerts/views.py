@@ -62,3 +62,19 @@ def get_alert_page(alert_id):
 def check_alert_price(alert_id):
     Alert.find_by_id(alert_id).load_item_price()
     return redirect(url_for('.get_alert_page', alert_id=alert_id))
+
+
+@alert_blueprint.route('/edit/<string:alert_id>', methods=['GET', 'POST'])
+@user_decorators.requires_login
+def edit_alert(alert_id):
+    alert = Alert.find_by_id(alert_id)
+    if request.method == 'POST':
+        price_limit = float(request.form['price_limit'])
+
+        alert.price_limit = price_limit
+        alert.save_to_mongo()  # This already saves to MongoDB
+
+        return redirect(url_for('users.user_alerts'))
+
+    # What happens if it's a GET request
+    return render_template("alerts/edit_alert.jinja2", alert=alert)  # Send the user an error if their login was invalid

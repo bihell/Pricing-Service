@@ -13,19 +13,19 @@
                 <label for="url_prefix">Store URL Prefix</label>
                 <input type="text" class="form-control" id="url_prefix" name="url_prefix" placeholder="http://..."
                 aria-describedby="storeURLPrefixHelp" value="{{ store.url_prefix }}">
-                <span id="storeURLPrefixHelp" class="help-block">What characters do URLs of all items in this online store start with?</span>
+                <span id="storeURLPrefixHelp" class="text-muted">What characters do URLs of all items in this online store start with?</span>
             </div>
             <div class="form-group">
                 <label for="tag_name">Tag name</label>
                 <input type="text" class="form-control" id="tag_name" name="tag_name" placeholder="span"
                        aria-describedby="tagNameHelp" value="{{ store.tag_name }}">
-                <span id="tagNameHelp" class="help-block">What is the HTML tag of the item that contains the item price? (usually 'span')</span>
+                <span id="tagNameHelp" class="text-muted">What is the HTML tag of the item that contains the item price? (usually 'span')</span>
             </div>
             <div class="form-group">
                 <label for="query">Query</label>
                 <input type="text" class="form-control" id="query" name="query" placeholder='{"id": "..."}'
                        aria-describedby="queryHelpBlock" value='{{ store.query | tojson }}'> <!-- If using double quotes here, it breaks! -->
-                <span id="queryHelpBlock" class="help-block">What JSON query would we have to do to find the specific tag with the price?</span>
+                <span id="queryHelpBlock" class="text-muted">What JSON query would we have to do to find the specific tag with the price?</span>
             </div>
             <button type="submit" class="btn btn-warning">Update</button>
         </form>
