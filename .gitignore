@@ -1,2 +1,3 @@
 .idea/*
 src/__pycache__*
+src/models/alerts/__pycache__*
