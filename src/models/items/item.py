@@ -30,7 +30,9 @@ class Item(object):
         return "<Item {} with URL {}>".format(self.name, self.url)
 
     def load_price(self):
-        request = requests.get(self.url)
+        user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
+        headers = {'user-agent': user_agent}
+        request = requests.get(self.url,headers=headers)
         content = request.content
         soup = BeautifulSoup(content, "html.parser")
         element = soup.find(self.tag_name, self.query)
